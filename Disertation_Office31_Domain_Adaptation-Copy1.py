@@ -6,7 +6,7 @@
 # In[1]:
 
 
-from IPython.display import clear_output
+# from IPython.display import clear_output
 import matplotlib.pyplot as plt
 
 import pickle
@@ -401,135 +401,136 @@ for W_CATEGORICAL in np.arange(0,1,.1):
             
 
             
+import pickle
+
 with open('result.pkl', 'wb') as fp:
     pickle.dump({'result':FinalResult}, fp)
 
 
-# In[ ]:
-
-
-import pickle
-
-# Read dictionary pkl file
-with open('data.pkl', 'rb') as fp:
-    person = pickle.load(fp)
-    print('Person dictionary')
-    print(person)
-
-
-# In[ ]:
-
-
-person['result'][0].keys()
-
-
-# In[ ]:
-
-
-def plot_loss_values(gl_, al_, cl_, dl_, tl_):
-  x = np.arange(len(gl_))
-
-  plt.plot(x, gl_, label = "generative loss", linestyle="-.")
-  plt.plot(x, al_, label = "adversarial loss", linestyle="-")
-  plt.plot(x, cl_, label = "categorical loss", linestyle="--")
-  plt.plot(x, dl_, label = "domain loss", linestyle=":")
-  plt.plot(x, tl_, label = "total loss", linestyle=(0, (3, 1, 1, 1)))
-  plt.legend()
-  plt.show()
+# # In[ ]:
 
 
 
-
-# In[ ]:
-
-
-def plot_acc_values(acc_source_, acc_target_, acc_source_val_):
-  x = np.arange(len(acc_source_))
-  plt.plot(x, acc_source_, label = "source acc", linestyle="-")
-  plt.plot(x, acc_target_, label = "target acc", linestyle=":")
-  plt.plot(x, acc_source_val_, label = "val acc", linestyle="-.")
-  plt.legend()
-  plt.show()
+# # Read dictionary pkl file
+# with open('data.pkl', 'rb') as fp:
+#     person = pickle.load(fp)
+#     print('Person dictionary')
+#     print(person)
 
 
-# In[ ]:
+# # In[ ]:
 
 
-import numpy as np
-import matplotlib.pyplot as plt
+# person['result'][0].keys()
 
 
-# In[ ]:
+# # In[ ]:
 
 
-for i in range(5):
-    print("W_CATEGORICAL: ", person['result'][i]['W_CATEGORICAL'])
-    print("W_ADVERSARIAL: ", person['result'][i]['W_ADVERSARIAL'])
-    print("W_DOMAIN: ", person['result'][i]['W_DOMAIN'])
+# def plot_loss_values(gl_, al_, cl_, dl_, tl_):
+#   x = np.arange(len(gl_))
+
+#   plt.plot(x, gl_, label = "generative loss", linestyle="-.")
+#   plt.plot(x, al_, label = "adversarial loss", linestyle="-")
+#   plt.plot(x, cl_, label = "categorical loss", linestyle="--")
+#   plt.plot(x, dl_, label = "domain loss", linestyle=":")
+#   plt.plot(x, tl_, label = "total loss", linestyle=(0, (3, 1, 1, 1)))
+#   plt.legend()
+#   plt.show()
+
+
+
+
+# # In[ ]:
+
+
+# def plot_acc_values(acc_source_, acc_target_, acc_source_val_):
+#   x = np.arange(len(acc_source_))
+#   plt.plot(x, acc_source_, label = "source acc", linestyle="-")
+#   plt.plot(x, acc_target_, label = "target acc", linestyle=":")
+#   plt.plot(x, acc_source_val_, label = "val acc", linestyle="-.")
+#   plt.legend()
+#   plt.show()
+
+
+# # In[ ]:
+
+
+# import numpy as np
+# import matplotlib.pyplot as plt
+
+
+# # In[ ]:
+
+
+# for i in range(5):
+#     print("W_CATEGORICAL: ", person['result'][i]['W_CATEGORICAL'])
+#     print("W_ADVERSARIAL: ", person['result'][i]['W_ADVERSARIAL'])
+#     print("W_DOMAIN: ", person['result'][i]['W_DOMAIN'])
     
-    plot_loss_values(person['result'][i]['gl_'], person['result'][i]['al_'], person['result'][i]['cl_'], person['result'][i]['dl_'], person['result'][i]['tl_'])
+#     plot_loss_values(person['result'][i]['gl_'], person['result'][i]['al_'], person['result'][i]['cl_'], person['result'][i]['dl_'], person['result'][i]['tl_'])
 
 
-# In[ ]:
+# # In[ ]:
 
 
-person['result'][0]['gl_'][0].numpy()
+# person['result'][0]['gl_'][0].numpy()
 
 
-# In[ ]:
+# # In[ ]:
 
 
-recap_acc = person['result']
+# recap_acc = person['result']
 
 
-# In[ ]:
+# # In[ ]:
 
 
-recap_acc
+# recap_acc
 
 
-# In[ ]:
+# # In[ ]:
 
 
-get_ipython().system('pip install pandas')
+# get_ipython().system('pip install pandas')
 
 
-# In[ ]:
+# # In[ ]:
 
 
-import pandas as pd
+# import pandas as pd
 
-df = pd.DataFrame.from_records(recap_acc)
-df['gl_'] = df['gl_'].map(lambda x: x[-1].numpy())
-df['al_'] = df['al_'].map(lambda x: x[-1].numpy())
-df['cl_'] = df['cl_'].map(lambda x: x[-1].numpy())
-df['dl_'] = df['dl_'].map(lambda x: x[-1].numpy())
-df['tl_'] = df['tl_'].map(lambda x: x[-1].numpy())
+# df = pd.DataFrame.from_records(recap_acc)
+# df['gl_'] = df['gl_'].map(lambda x: x[-1].numpy())
+# df['al_'] = df['al_'].map(lambda x: x[-1].numpy())
+# df['cl_'] = df['cl_'].map(lambda x: x[-1].numpy())
+# df['dl_'] = df['dl_'].map(lambda x: x[-1].numpy())
+# df['tl_'] = df['tl_'].map(lambda x: x[-1].numpy())
 
-df['acc_source_'] = df['acc_source_'].map(lambda x: x[-1].numpy())
-df['acc_target_'] = df['acc_target_'].map(lambda x: x[-1].numpy())
-df['acc_source_val_'] = df['acc_source_val_'].map(lambda x: x[-1].numpy())
-
-
-# In[ ]:
+# df['acc_source_'] = df['acc_source_'].map(lambda x: x[-1].numpy())
+# df['acc_target_'] = df['acc_target_'].map(lambda x: x[-1].numpy())
+# df['acc_source_val_'] = df['acc_source_val_'].map(lambda x: x[-1].numpy())
 
 
-df.head()
+# # In[ ]:
 
 
-# In[ ]:
+# df.head()
 
 
-df.describe()
+# # In[ ]:
 
 
-# In[ ]:
+# df.describe()
 
 
-df.plot()
+# # In[ ]:
 
 
-# In[ ]:
+# df.plot()
+
+
+# # In[ ]:
 
 
 
