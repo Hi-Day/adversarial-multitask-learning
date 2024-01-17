@@ -74,6 +74,8 @@ print(DIR_SOURCE, DIR_TARGET)
 
 import tensorflow as tf
 
+tf.random.set_seed(1202)
+
 class DataLoader:
 
     def __init__(self, source, target, BATCH_SIZE=64, IMG_HEIGHT = 128, IMG_WIDTH = 128, IMG_DIM = 3):
@@ -355,7 +357,7 @@ def train(model, dataset, EPOCHS):
             gl_ += [generative_loss]
             al_ += [adversarial_loss]
             cl_ += [categorical_loss]
-            dl_ += [domain_loss]
+            dl_ += [-1 * domain_loss]
             tl_ += [fe_loss]
             acc_source_ += [acc_source]
             acc_target_ += [acc_target]
@@ -426,7 +428,7 @@ tempResult = {'W_CATEGORICAL' : W_CATEGORICAL,
               'gl_':gl_, 
               'al_':al_, 
               'cl_':cl_, 
-              'dl_':-1 * dl_, 
+              'dl_':dl_, 
               'tl_':tl_, 
               'acc_source_':acc_source_, 
               'acc_target_':acc_target_, 
